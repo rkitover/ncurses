@@ -2104,7 +2104,7 @@ LIB_SUBSETS="${LIB_SUBSETS}base"
 if test "$with_term_driver" != no ; then
 	LIB_SUBSETS="${LIB_SUBSETS}+port_drivers"
 	case "$cf_cv_system_name" in
-	(*mingw32*|*mingw64*)
+	(*mingw32*|*mingw64*|*msys*|*cygwin*)
 		if test "x$with_exp_win32" = xyes ; then
 			LIB_SUBSETS="${LIB_SUBSETS}+port_tinfo+port_win32"
 		else

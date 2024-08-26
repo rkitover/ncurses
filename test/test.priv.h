@@ -1023,12 +1023,12 @@ extern int TABSIZE;
 #define EXIT_FAILURE 1
 #endif
 
-#undef _NC_WINDOWS
+#undef _NC_WINDOWS_NATIVE
 #if (defined(_WIN32) || defined(_WIN64))
-#define _NC_WINDOWS 1
+#define _NC_WINDOWS_NATIVE 1
 #endif
 
-#if defined(_NC_WINDOWS) || defined(USE_WIN32CON_DRIVER)
+#if defined(_NC_WINDOWS_NATIVE) || defined(USE_WIN32CON_DRIVER)
 
 #if defined(PDCURSES)
 #ifdef WINVER
@@ -1160,7 +1160,7 @@ extern char *_nc_strstr(const char *, const char *);
 #define InitAndCatch(init,handler) do { init; CATCHALL(handler); } while (0)
 #endif
 
-#if defined(_NC_WINDOWS) || defined(USE_WIN32CON_DRIVER)
+#if defined(_NC_WINDOWS_NATIVE) || defined(USE_WIN32CON_DRIVER)
 #define SetupAlarm(opt)	(void)opt
 #else
 #define SetupAlarm(opt)	if (opt) alarm((unsigned)opt)

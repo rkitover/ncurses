@@ -490,8 +490,10 @@ ShellOut(bool message)
 	addstr("Shelling out...");
     def_prog_mode();
     endwin();
-#ifdef _NC_WINDOWS
-    system("cmd.exe");
+#ifdef _NC_WINDOWS_NATIVE
+    if (system("pwsh.exe") == -1)
+	if (system("powershell.exe") == -1)
+	    system("cmd.exe");
 #else
     IGNORE_RC(system("sh"));
 #endif

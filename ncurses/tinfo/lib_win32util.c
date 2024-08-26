@@ -36,7 +36,7 @@
 
 MODULE_ID("$Id: lib_win32util.c,v 1.3 2023/02/25 20:07:48 tom Exp $")
 
-#ifdef _NC_WINDOWS
+#ifdef _NC_WINDOWS_NATIVE
 #include <io.h>
 
 #ifdef _NC_CHECK_MINTTY
@@ -131,4 +131,4 @@ _nc_gettimeofday(struct timeval *tv, void *tz GCC_UNUSED)
 }
 #endif // HAVE_GETTIMEOFDAY == 2
 
-#endif // _NC_WINDOWS
+#endif // _NC_WINDOWS_NATIVE

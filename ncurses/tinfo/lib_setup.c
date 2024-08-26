@@ -574,7 +574,7 @@ NCURSES_EXPORT(int)
 _nc_unicode_locale(void)
 {
     int result = 0;
-#if defined(_NC_WINDOWS) && USE_WIDEC_SUPPORT
+#if defined(_NC_WINDOWS_NATIVE) && USE_WIDEC_SUPPORT
     result = 1;
 #elif HAVE_LANGINFO_CODESET
     char *env = nl_langinfo(CODESET);

@@ -97,7 +97,7 @@ NCURSES_SP_NAME(mcprint) (NCURSES_SP_DCLx char *data, int len)
      * kernel will ship the contiguous clist items from the last write
      * immediately.
      */
-#ifndef _NC_WINDOWS
+#ifndef _NC_WINDOWS_NATIVE
     (void) sleep(0);
 #endif
     free(mybuf);

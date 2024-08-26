@@ -40,7 +40,7 @@
 
 MODULE_ID("$Id: lib_win32con.c,v 1.12 2023/02/26 19:55:10 tom Exp $")
 
-#ifdef _NC_WINDOWS
+#if defined(_NC_WINDOWS)
 
 #ifdef _NC_MINGW
 #include <wchar.h>

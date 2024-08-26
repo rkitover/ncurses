@@ -36,7 +36,7 @@
  */
 #include <test.priv.h>
 
-#if !defined(_NC_WINDOWS)
+#if !defined(_NC_WINDOWS_NATIVE)
 #include <sys/time.h>
 #endif
 

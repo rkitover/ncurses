@@ -38,8 +38,8 @@
 
 #if defined(_WIN32) || defined(_WIN64)
 
-#ifndef _NC_WINDOWS
-#define _NC_WINDOWS
+#ifndef _NC_WINDOWS_NATIVE
+#define _NC_WINDOWS_NATIVE
 #endif
 
 #ifdef TERMIOS

@@ -37,7 +37,7 @@
 #define USE_TINFO
 #include <test.priv.h>
 
-#if !defined(_NC_WINDOWS)
+#if !defined(_NC_WINDOWS_NATIVE)
 #include <sys/time.h>
 #endif
 
@@ -162,7 +162,7 @@ static void
 my_napms(int ms)
 {
     if (ms > 0) {
-#if defined(_NC_WINDOWS)
+#if defined(_NC_WINDOWS_NATIVE)
 	Sleep((unsigned int) ms);
 #else
 	struct timeval data;

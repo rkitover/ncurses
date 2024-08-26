@@ -1504,7 +1504,7 @@ typedef struct DriverEntry {
 
 static DRIVER_ENTRY DriverTable[] =
 {
-#ifdef _NC_WINDOWS
+#ifdef USE_WIN32CON_DRIVER
     {"win32console", &_nc_WIN_DRIVER},
 #endif
     {"tinfo", &_nc_TINFO_DRIVER}	/* must be last */

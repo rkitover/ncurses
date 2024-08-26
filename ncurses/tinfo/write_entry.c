@@ -192,7 +192,7 @@ make_db_root(const char *path)
 
 	if ((rc = stat(path, &statbuf)) == -1) {
 	    rc = mkdir(path
-#ifndef _NC_WINDOWS
+#ifndef _NC_WINDOWS_NATIVE
 		       ,0777
 #endif
 		);

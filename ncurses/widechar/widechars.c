@@ -33,7 +33,7 @@
 
 MODULE_ID("$Id: widechars.c,v 1.9 2020/08/29 16:22:03 juergen Exp $")
 
-#if (defined(_NC_WINDOWS)) && !defined(_NC_MSC)
+#if defined(_NC_MINGW)
 /*
  * MinGW has wide-character functions, but they do not work correctly.
  */
@@ -148,6 +148,6 @@ _nc_wctomb(char *s, wchar_t wc)
     return result;
 }
 
-#endif /* _NC_WINDOWS */
+#endif /* _NC_MINGW */
 
 #endif /* USE_WIDEC_SUPPORT */

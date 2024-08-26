@@ -104,11 +104,22 @@ extern int errno;
 #endif
 
 /* Some Windows related defines */
+
 #undef _NC_WINDOWS
-#if (defined(_WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64__) || defined(__MSYS__) || defined(__CYGWIN__))
 #define _NC_WINDOWS
 #else
 #undef EXP_WIN32_DRIVER
+#endif
+
+#undef _NC_CYGWIN
+#if (defined(__MSYS__) || defined(__CYGWIN__))
+#define _NC_CYGWIN
+#endif
+
+#undef _NC_WINDOWS_NATIVE
+#if (defined(_WIN32) || defined(_WIN64))
+#define _NC_WINDOWS_NATIVE
 #endif
 
 #undef _NC_MINGW
@@ -203,7 +214,7 @@ extern int errno;
  * the path separator in configure doesn't work properly. So, if building
  * for MinGW, we enforce the correct Windows PATH separator
  */
-#if defined(_NC_WINDOWS)
+#if defined(_NC_WINDOWS_NATIVE)
 #  ifdef NCURSES_PATHSEP
 #    undef NCURSES_PATHSEP
 #  endif
@@ -226,6 +237,15 @@ extern int errno;
 		   OPEN_EXISTING, \
 		   0, \
 		   0)
+#endif
+
+/*
+ * The stricmp() function is in MSVCRT, and cannot be called or linked from
+ * Cygwin runtime-dependent binaries currently. Use the POSIX strcaseccmp()
+ * function instead which is pretty much the same.
+ */
+#if defined(_NC_CYGWIN)
+#define stricmp(s1, s2) strcasecmp(s1, s2)
 #endif
 
 /*
@@ -2188,7 +2208,7 @@ extern NCURSES_EXPORT(int) _nc_eventlist_timeout(_nc_eventlist *);
  */
 #if USE_WIDEC_SUPPORT
 
-#if defined(_NC_WINDOWS) && !defined(_NC_MSC) && !defined(EXP_WIN32_DRIVER)
+#if defined(_NC_WINDOWS_NATIVE) && !defined(_NC_MSC) && !defined(EXP_WIN32_DRIVER)
 /*
  * MinGW has wide-character functions, but they do not work correctly.
  */
@@ -2202,9 +2222,9 @@ extern int __MINGW_NOTHROW _nc_mbtowc(wchar_t *, const char *, size_t);
 extern int __MINGW_NOTHROW _nc_mblen(const char *, size_t);
 #define mblen(s,n) _nc_mblen(s, n)
 
-#endif /* _NC_WINDOWS && !_NC_MSC */
+#endif /* _NC_WINDOWS_NATIVE && !_NC_MSC */
 
-#if defined(_NC_WINDOWS) || defined(_NC_MINGW)
+#if defined(_NC_WINDOWS_NATIVE) || defined(_NC_MINGW)
 /* see wcwidth.c */
 NCURSES_EXPORT(int) mk_wcwidth(wchar_t);
 #define wcwidth(ucs) _nc_wcwidth(ucs)

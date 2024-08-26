@@ -36,7 +36,7 @@
 #ifndef NC_MINGW_H
 #define NC_MINGW_H 1
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(__MSYS__) || defined(__CYGWIN__)
 
 #ifdef WINVER
 #  if WINVER < 0x0501
@@ -83,6 +83,6 @@ NCURSES_EXPORT(int) _nc_wcwidth(wchar_t);
 }
 #endif
 
-#endif /* _WIN32 */
+#endif /* _WIN32|__MSYS__|__CYGWIN__ */
 
 #endif /* NC_MINGW_H */
